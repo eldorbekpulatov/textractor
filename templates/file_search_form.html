@@ -1,0 +1,75 @@
+<html>  
+    <head>  
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static', filename='custom.css')}}">
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="{{url_for('static', filename='jquery.min.js')}}"></script>
+        <script src="{{url_for('static', filename='popper.min.js')}}"></script>
+        <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+        <script src="{{url_for('static', filename='mark.min.js')}}"></script>
+        <script src="{{url_for('static', filename='custom.js')}}"></script>
+
+        <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/g/jquery@3.1.0,mark.js@8.6.0(jquery.mark.min.js)"></script> -->
+    </head>  
+    <body>  
+
+        <div class="container">
+            <nav class="navbar fixed-top navbar-light bg-light justify-content-between mx-auto">
+                <a class="navbar-brand" href="{{url_for('index')}}">Seach Documents</a>
+                <div class="form-inline">
+                    <input class="form-control mr-1"  type="search" placeholder="search...">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary" data-search="enter">enter</button>
+                        <button type="button" class="btn btn-secondary" data-search="next">&darr;</button>
+                        <button type="button" class="btn btn-secondary" data-search="prev">&uarr;</button>
+                        <button type="button" class="btn btn-danger" data-search="clear">✖</button>
+                    </div>
+                </div>
+            </nav>
+            
+
+
+            <div id="accordion" style="margin-top: 75px;">
+                {% for item in data %}
+                    <div class="card">
+                        <div class="card-header form-inline d-flex justify-content-between" id="{{item.name}}">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#{{item.id}}" aria-expanded="true" aria-controls="{{item.id}}">{{item.name}}</button>  
+                            </h5>
+
+                            <div >
+                                <label for="{{item.name}}">
+                                    <input class="form-check-input" type="checkbox" id="{{item.id}}text">
+                                    Search Me! 
+                                </label>
+
+                                <label for="{{item.id}}text">
+                                    Match Count: 
+                                    <div class="matchCount" id="{{item.id}}text">0</div>
+                                </label>
+                            </div>
+                        </div>
+                  
+                        <div id="{{item.id}}" class="collapse" aria-labelledby="{{item.name}}">                         
+                            <pre class="card-body" id="{{item.id}}text" style="max-height:300px; overflow-y: auto;">
+                               {{ item.text }}
+                            </pre>
+    
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+
+    </body>  
+</html>  
