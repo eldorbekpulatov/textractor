@@ -45,11 +45,11 @@ def upload():
                     except Exception as e:
                         text = str(e)
                     content.append({ "id": file_id, "name":file.filename, "type": file.content_type, "text": text })
-                    os.remove(file_path)
+                    # os.remove(file_path)
                     file_id += 1
             return render_template("file_search_form.html", data=content)  
     else:
         return redirect(url_for("index"))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, use_debugger=True, use_reloader=True)
