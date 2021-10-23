@@ -1,7 +1,8 @@
 # importing required modules 
-import os, random
-from flask import Flask, render_template, request, redirect, url_for
+import os
+import random
 import textract 
+from flask import Flask, request, render_template, redirect, url_for
 
 
 app = Flask(__name__)
